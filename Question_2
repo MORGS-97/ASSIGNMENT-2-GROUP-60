@@ -82,7 +82,7 @@ def tree_to _string(node):
         return str(node[1]) # it is a simple number
     
     if kind == 'neg':
-        inner = tree_to_string(node][1])
+        inner = tree_to_string(node[1])
         return f"(neg {inner})" # convert with number to say (neg 7)
     
     if kind == 'binop':
@@ -123,7 +123,7 @@ def process_file(Maths_Examples.txt, output.txt):
         with open("Maths_Examples.txt") as f: # Open and read every line from the input file
         lines = f.readlines()
 
-    blocks = []   # we'll collect each result block here
+blocks = []   # we'll collect each result block here
 
     for line in lines:
         expr = line.strip()   # remove spaces and newline characters from ends

@@ -39,7 +39,7 @@ def parse_primary(tokens, pos): # What are we looking at?
         consume(tokens, pos) # Move past '-' sign
         return ('neg', operand) # make it negative
     if token =='+':
-        raise ValueError("Unary Not Supported" )
+        raise ValueError("Unary Not Supported")
     if token =='(':
         consume(tokens, pos) # move past the (
         node = parse_expression(token, pos) # calculate inside btracjket from the top

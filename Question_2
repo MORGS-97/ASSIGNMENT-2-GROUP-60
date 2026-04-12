@@ -1,1 +1,11 @@
+# Step One - Tokenise the input data 
+
+def (data):
+    tokens = [] # The empty bucket
+    a = 0 # position 
+
+while a < (data): # Evaluate all characters
+
+
+
 

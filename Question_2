@@ -116,9 +116,11 @@ def evaluate_tree(node):
                 raise ValueError("Cannot divide by zero")
             return left
         
-def process_file(input_path, output_path):
+# The final piece is the input and output files
+        
+def process_file(Maths_Examples.txt, output.txt):
 
-        with open(input_path) as f: # Open and read every line from the input file
+        with open("Maths_Examples.txt") as f: # Open and read every line from the input file
         lines = f.readlines()
 
     blocks = []   # we'll collect each result block here
@@ -128,9 +130,15 @@ def process_file(input_path, output_path):
         if not expr:
             continue          # skip blank lines
         
-        
+            file_out.write(f"{clean_line}\n")
+            file_out.write(f"{tree_string}\n")
+            file_out.write(f"{token_strings}\n")
+            file_out.write(f"{final_value}\n\n")
+            
+            
+            
 
-with open("maths_examples.txt", "w") as file:
+with open("evaluator.txt", "w") as file:
     file.write("3 + 4\n")
     file.write("10 * 2\n")
     file.write("(5 - 2) 3\n")

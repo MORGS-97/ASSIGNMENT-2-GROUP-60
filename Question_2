@@ -73,7 +73,7 @@ def parse_term(tokens, pos):
 
     return left
 
-# We now have the Tree
+# We now have the Tree parameters
 
 def tree_to _string(node):
     kind = node[0]   # Defining the node type 
@@ -87,11 +87,65 @@ def tree_to _string(node):
     
     if kind == 'binop':
         op = node[1]
+        left  = tree_to_string(node[2])   # convert left side
+        right = tree_to_string(node[3])   # convert right side
+        return f"({op} {left} {right})"   # combine e.g. "(+ 2.0 3.0)"
+    
+
+# We have assembled the tree now the calculation
+
+def evaluate_tree(node):
+    kind = node[0]
+
+    if kind == 'num':
+        return node[1]   # just give me the number
+
+    if kind == 'neg':
+        return -evaluate_tree(node[1])   # negative number inside
+    
+
+    if kind == 'binop': # using the operators left and right
+        op    = node[1]
+        left  = evaluate_tree(node[2])   # calculate left side first
+        right = evaluate_tree(node[3])   # calculate right side
+        if op == '+': return left + right
+        if op == '-': return left - right
+        if op == '*': return left * right
+        if op == '/': return left / right
+            if right == 0:
+                raise ValueError("Cannot divide by zero")
+            return left
         
-    
+def process_file(input_path, output_path):
 
+        with open(input_path) as f: # Open and read every line from the input file
+        lines = f.readlines()
 
-    
+    blocks = []   # we'll collect each result block here
+
+    for line in lines:
+        expr = line.strip()   # remove spaces and newline characters from ends
+        if not expr:
+            continue          # skip blank lines
+        
+        
+
+with open("maths_examples.txt", "w") as file:
+    file.write("3 + 4\n")
+    file.write("10 * 2\n")
+    file.write("(5 - 2) 3\n")
+    file.write("2 + 3\n")
+    file.write("(-2 + 3) * 4\n")
+    file.write(" 10 / 2 + 1\n")
+    file.write(" 100 - 25 * 3\n")
+    file.write(" (8 + 2)  (5 - 3)\n")
+    file.write(" 7 ( 2 / 7)\n")
+    file.write(" 5 / 10\n")
+    file.write(100 / 0\n")
+                  
+   
+print("Practice file created!")
+
         
         
         

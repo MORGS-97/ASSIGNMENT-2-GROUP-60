@@ -34,6 +34,9 @@ def consume(tokens, pos): # "Take the current token and move the bookmark forwar
     if current_number != "":
     tokens.append() # this is a last catch all
     
+    # from the above all items are now on a conveyor belt
+    
+    
 def parse_primary(tokens, pos): # What are we looking at?
     if token == '-':
         consume(tokens, pos) # Move past '-' sign
@@ -42,9 +45,52 @@ def parse_primary(tokens, pos): # What are we looking at?
         raise ValueError("Unary Not Supported")
     if token =='(':
         consume(tokens, pos) # move past the (
-        node = parse_expression(token, pos) # calculate inside btracjket from the top
+        node = parse_expression(token, pos) # calculate inside bracket from the top
         consume(tokens, pos) # Move past ) bracket
         return node
+    
+    # if none of the above it must be a simple number
+    
+    conmsume(tokens, pos) # take the number from the conveyor belt
+    return('num', float(token)) # convert 5 to 5.0 now wrapeed into a number node
+
+def parse_term(tokens, pos):
+    left = parse_primary(tokens, pos) # take the left value
+    
+    while current(tokens, pos) in ('*', '/'): # is the next token on the conveyor a '*' or '/'
+        op = consume(tokens, pos) # select the '*' or '/'
+        right = parse_primary(tokens, pos) # get the right side
+        left = ('binop', op, left, right) # combine into tree node
+        
+    return left
+    
+    def parse_expression(tokens, pos): # now to deal with the '+' and '-'
+        left = parse_term(tokens, pos)
+        while current(tokens, pos) in ('+', '-'): 
+        op = consume(tokens, pos)           # select the + or -
+        right = parse_term(tokens, pos)     # get the right side
+        left = ('binop', op, left, right)   # combine into a tree node
+
+    return left
+
+# We now have the Tree
+
+def tree_to _string(node):
+    kind = node[0]   # Defining the node type 
+    
+    if kind == 'num':
+        return str(node[1]) # it is a simple number
+    
+    if kind == 'neg':
+        inner = tree_to_string(node][1])
+        return f"(neg {inner})" # convert with number to say (neg 7)
+    
+    if kind == 'binop':
+        op = node[1]
+        
+    
+
+
     
         
         

@@ -2,9 +2,59 @@
 
 def (data):
     tokens = [] # The empty bucket
+    valid_symols = ["+", "-", "*", "/", "^", "(", ")"] # List of valid symbols for operators and parentheses
     a = 0 # position 
 
 while a < (data): # Evaluate all characters
+    if data[a].isspace(): # Move past if space
+        a +=1
+        
+    elif data[a].isdigit() or data[a] == '.': # A number keep reading until ends
+        k = a # k marks the start of the number
+        while k < len(data) and (data[k].isdigit() or data[k] == '.'):
+            k +=1 # data [a:k] is the entire number
+            tokens.append(data[a:k]) # add to the bucket
+        if a < len(data) and data[k] == '(' :
+            tokens.append('*')
+        a = k # move to end of current nember
+        else:
+            valid_symbols:
+                tokens.append()  # Add symbols to the bucket
+                
+def current(tokens, pos): # "What token are we looking at right now?"    
+    if pos[0] < len(tokens): # pos[0] is our bookmark — which position in the list we're at
+        return tokens[pos[0]]
+    return None   # if we've gone past the end, return nothing
+
+def consume(tokens, pos): # "Take the current token and move the bookmark forward one step"
+    token = tokens[pos[0]]
+    pos[0] += 1   # move forward
+    return token
+
+    if current_number != "":
+    tokens.append() # this is a last catch all
+    
+def parse_factor(tokens):
+    current_token = next(tokens) # Get the next token from the conveyor belt
+    if type(current_token) == int: # If the token is a number
+        return current_token
+    
+    elif current_token == '(': # If the token is an opening parenthesis, we need to solve the expression inside the parentheses
+        inside_result = parse_expression(tokens) # Recursively parse the expression inside the parentheses
+        closing_bracket = next(tokens) # Get the next token after parsing the expression
+        if closing_bracket != ')': # If the next token is not a closing parenthesis, there is a syntax error
+            print (" Missing a closing bracket")
+        return inside_result # Return the result of the expression inside the parentheses
+
+
+    
+    
+
+            
+            
+            
+        
+        
 
 
 

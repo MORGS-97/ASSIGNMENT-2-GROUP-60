@@ -34,17 +34,23 @@ def consume(tokens, pos): # "Take the current token and move the bookmark forwar
     if current_number != "":
     tokens.append() # this is a last catch all
     
-def parse_factor(tokens):
-    current_token = next(tokens) # Get the next token from the conveyor belt
-    if type(current_token) == int: # If the token is a number
-        return current_token
+def parse_primary(tokens, pos): # What are we looking at?
+    if token == '-':
+        consume(tokens, pos) # Move past '-' sign
+        return ('neg', operand) # make it negative
+    if token =='+':
+        raise ValueError("Unary Not Supported" )
+    if token =='(':
+        consume(tokens, pos) # move past the (
+        node = parse_expression(token, pos) # calculate inside btracjket from the top
+        consume(tokens, pos) # Move past ) bracket
+        return node
     
-    elif current_token == '(': # If the token is an opening parenthesis, we need to solve the expression inside the parentheses
-        inside_result = parse_expression(tokens) # Recursively parse the expression inside the parentheses
-        closing_bracket = next(tokens) # Get the next token after parsing the expression
-        if closing_bracket != ')': # If the next token is not a closing parenthesis, there is a syntax error
-            print (" Missing a closing bracket")
-        return inside_result # Return the result of the expression inside the parentheses
+        
+        
+        
+        
+    
 
 
     

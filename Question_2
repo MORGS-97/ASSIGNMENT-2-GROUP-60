@@ -5,11 +5,11 @@ def (data):
     valid_symols = ["+", "-", "*", "/", "^", "(", ")"] # List of valid symbols for operators and parentheses
     a = 0 # position 
 
-while a < (data): # Evaluate all characters
-    if data[a].isspace(): # Move past if space
+    while a < (data): # Evaluate all characters
+        if data[a].isspace(): # Move past if space
         a +=1
         
-    elif data[a].isdigit() or data[a] == '.': # A number keep reading until ends
+        elif data[a].isdigit() or data[a] == '.': # A number keep reading until ends
         k = a # k marks the start of the number
         while k < len(data) and (data[k].isdigit() or data[k] == '.'):
             k +=1 # data [a:k] is the entire number

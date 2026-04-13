@@ -149,7 +149,7 @@ with open("evaluator.txt", "w") as file:
     file.write(" (8 + 2)  (5 - 3)\n")
     file.write(" 7 ( 2 / 7)\n")
     file.write(" 5 / 10\n")
-    file.write(100 / 0\n")
+    file.write(" 100 / 0\n")
                   
    
 print("Practice file created!")

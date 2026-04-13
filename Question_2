@@ -1,25 +1,30 @@
 # Step One - Tokenise the input data 
 
-def (data):
+def tokenise(data):
     tokens = [] # The empty bucket
     valid_symols = ["+", "-", "*", "/", "^", "(", ")"] # List of valid symbols for operators and parentheses
     a = 0 # position 
 
-    while a < (data): # Evaluate all characters
+    while a < len(data): # Evaluate all characters
         if data[a].isspace(): # Move past if space
         a +=1
         
         elif data[a].isdigit() or data[a] == '.': # A number keep reading until ends
-        k = a # k marks the start of the number
-        while k < len(data) and (data[k].isdigit() or data[k] == '.'):
-            k +=1 # data [a:k] is the entire number
+            k = a # k marks the start of the number
+            while k < len(data) and (data[k].isdigit() or data[k] == '.'):
+                k +=1 # data [a:k] is the entire number
             tokens.append(data[a:k]) # add to the bucket
-        if a < len(data) and data[k] == '(' :
-            tokens.append('*')
-        a = k # move to end of current nember
-        else:
+            if a < len(data) and data[k] == '(' : # implicit multiplication
+                tokens.append('*')
+            a = k # move to end of current nember
+        elif data [a] in valid_symbols:
             valid_symbols:
-                tokens.append()  # Add symbols to the bucket
+                tokens.append(data[a])  # Add symbols to the bucket
+                a += 1
+        else:
+            raise ValueError(f"Unexpected character: {data[a]} at position {a}")
+    return tokens # tokenise function must return tokens        
+                
                 
 def current(tokens, pos): # "What token are we looking at right now?"    
     if pos[0] < len(tokens): # pos[0] is our bookmark — which position in the list we're at

@@ -31,18 +31,17 @@ def current(tokens, pos): # "What token are we looking at right now?"
         return tokens[pos[0]]
     return None   # if we've gone past the end, return nothing
 
-def consume(tokens, pos): # "Take the current token and move the bookmark forward one step"
+def consume(tokens, pos): # "Take the current token add to bucket and move the bookmark forward one step"
     token = tokens[pos[0]]
     pos[0] += 1   # move forward
     return token
 
-    if current_number != "":
-    tokens.append() # this is a last catch all
-    
+  
     # from the above all items are now on a conveyor belt
     
     
 def parse_primary(tokens, pos): # What are we looking at?
+    token = tokens(tokens, pos):
     if token == '-':
         consume(tokens, pos) # Move past '-' sign
         return ('neg', operand) # make it negative
